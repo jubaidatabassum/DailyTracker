@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,72 +8,59 @@
 <title>Jubaida's Daily Tracker</title>
 <style>
 *{box-sizing:border-box}
-:root{--bg:#101018;--card:#191925;--border:#302d43;--text:#f5f2ff;--muted:#a6a1bb;--purple:#b7a0ff;--green:#72d9a4}
-body{margin:0;padding:20px 13px;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-main{max-width:680px;margin:12px auto}
-header,.top,.selectors{display:flex;justify-content:space-between;align-items:center;gap:12px}
-h1{font-size:clamp(23px,5vw,30px);margin:0;overflow-wrap:anywhere}
+:root{--bg:#101018;--card:#191925;--border:#302d43;--text:#f5f2ff;--muted:#aaa4be;--purple:#b7a0ff;--green:#72d9a4}
+body{margin:0;padding:16px 12px;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+main{max-width:680px;margin:auto}
+h1{font-size:clamp(24px,5vw,31px);margin:0}
 p{color:var(--muted);font-size:13px;line-height:1.7;margin:7px 0}
 .purple{color:var(--purple)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px;margin-top:15px}
-.section-title{font-size:16px;margin:0}
-.label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
-.selectors{align-items:flex-end}
+.card{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:17px;margin-top:14px}
+.selectors,.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .field{flex:1;min-width:0}
-select{width:100%;min-width:0;padding:10px 8px;border:1px solid #403853;border-radius:9px;background:#232333;color:var(--text);font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:17px}
-.stat{background:#222231;padding:12px 5px;text-align:center;border-radius:10px;min-width:0}
+.label{font-size:10px;color:var(--muted);letter-spacing:1px;margin-bottom:7px}
+select,textarea{width:100%;padding:11px 9px;border:1px solid #403853;border-radius:9px;background:#232333;color:var(--text);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+.stat{background:#222231;padding:12px 4px;text-align:center;border-radius:10px;min-width:0}
 .stat strong{display:block;font-size:20px;margin-bottom:5px;overflow-wrap:anywhere}
 .stat span{font-size:9px;color:var(--muted)}
 .bar{height:7px;background:#302d43;border-radius:10px;overflow:hidden;margin-top:15px}
-.fill{height:100%;width:0;background:var(--purple);transition:width .25s}
-.task{display:flex;gap:12px;padding:15px 0;border-bottom:1px solid var(--border);cursor:pointer;align-items:flex-start}
-.task:last-child{border-bottom:0;padding-bottom:2px}
+.fill{height:100%;width:0;background:var(--purple);transition:width .2s}
+.section-title{font-size:16px;margin:0}
+.task{display:flex;gap:12px;padding:15px 0;border-bottom:1px solid var(--border);align-items:flex-start;cursor:pointer}
+.task:last-child{border-bottom:0}
 .task input{width:19px;height:19px;flex-shrink:0;accent-color:var(--purple);margin:2px 0 0}
 .task-content{flex:1;min-width:0}
 .task strong{font-size:14px}
 .task small{display:block;font-size:12px;color:var(--muted);line-height:1.7;margin-top:6px}
-.task.completed .task-content{opacity:.58}
+.task.completed .task-content{opacity:.6}
 .task.completed strong{text-decoration:line-through}
-textarea{width:100%;min-height:90px;resize:vertical;margin-top:8px;padding:12px;background:#12121c;border:1px solid var(--border);border-radius:9px;color:var(--text);font:13px Arial;line-height:1.6}
-select:focus,textarea:focus{outline:1px solid var(--purple)}
-button{background:#272337;color:var(--text);border:1px solid #403853;border-radius:8px;padding:10px 12px;font-size:12px;cursor:pointer}
-button:hover{background:#352d4a}
+textarea{min-height:95px;resize:vertical;margin-top:8px;line-height:1.6}
+button{background:#272337;color:var(--text);border:1px solid #403853;border-radius:8px;padding:11px 13px;font-size:12px;cursor:pointer}
+button.primary{background:#302447;border-color:#65518d}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.primary{background:#302447;border-color:#65518d}
-.remark{font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+#saveStatus{font-size:12px;color:var(--green);margin-top:10px}
 footer{text-align:center;color:#77738d;font-size:11px;margin:22px 0}
-@media(max-width:430px){
-body{padding:12px 9px}
-.card{padding:14px;margin-top:12px}
-.selectors{gap:8px}
-.stat{padding:11px 3px}
-.stat strong{font-size:17px}
-.stat span{font-size:8px}
-}
+@media(max-width:430px){body{padding:10px 8px}.card{padding:13px}.stats{gap:5px}.stat strong{font-size:17px}.stat span{font-size:8px}.selectors{gap:7px}}
 </style>
 </head>
 <body>
 <main>
 <header>
-<div>
 <h1>Jubaida's <span class="purple">Daily Tracker.</span></h1>
 <p>Learn something. Solve something. Improve daily.</p>
-</div>
 </header>
 
 <section class="card">
 <div class="selectors">
 <div class="field">
-<div class="label">Choose month</div>
+<div class="label">CHOOSE MONTH</div>
 <select id="month"></select>
 </div>
 <div class="field">
-<div class="label">Choose date</div>
+<div class="label">CHOOSE DATE</div>
 <select id="date"></select>
 </div>
 </div>
-
 <div class="stats">
 <div class="stat"><strong id="percent" class="purple">0%</strong><span>MONTHLY PROGRESS</span></div>
 <div class="stat"><strong id="done">0/0</strong><span>TASKS DONE</span></div>
@@ -84,19 +72,15 @@ body{padding:12px 9px}
 
 <section class="card">
 <div class="top">
-<div>
-<h2 class="section-title">Daily Tasks</h2>
-<p id="selectedDate"></p>
-</div>
+<div><h2 class="section-title">Daily Tasks</h2><p id="selectedDate"></p></div>
 <span class="purple" id="dailyCount">0/3</span>
 </div>
-
 <div id="tasks"></div>
-
 <div style="margin-top:20px">
 <h3 class="section-title">Daily Remark</h3>
 <p>What did you learn or accomplish today?</p>
 <textarea id="reflection" placeholder="Write your achievement, difficulty, or lesson..."></textarea>
+<p id="saveStatus" role="status">Your changes save automatically.</p>
 <div class="actions">
 <button class="primary" id="today">Go to Today</button>
 <button id="reset">Reset This Day</button>
@@ -106,65 +90,69 @@ body{padding:12px 9px}
 
 <section class="card">
 <h2 class="section-title" id="summaryTitle">Monthly Remark</h2>
-<p class="remark" id="monthlyRemark">Your monthly summary will update as you complete tasks.</p>
+<p id="monthlyRemark">Your monthly summary will update as you complete tasks.</p>
 <p id="monthlyStats"></p>
 </section>
-
-<footer>Jubaida's Daily Tracker · Your progress saves in this browser.</footer>
+<footer>Your progress is saved in this browser on this device.</footer>
 </main>
 
 <script>
+const KEY="jubaidas-yearly-daily-tracker";
+const DATE_KEY="jdt-selected-date-v2";
+const $=id=>document.getElementById(id);
+
 const tasks=[
-{
-title:"Academic Learning",
-description:"Revised one course topic and prepared concise notes for better understanding."
-},
-{
-title:"Problem-Solving",
-description:"Solve one programming problem or complete a practical coding exercise."
-},
-{
-title:"Digital Productivity",
-description:"Learned and applied one useful digital tool or technique to simplify a real-life task."
-}
+{title:"Academic Learning",description:"Revised one course topic and prepared concise notes for better understanding."},
+{title:"Problem-Solving",description:"Solve one programming problem or complete a practical coding exercise."},
+{title:"Digital Productivity",description:"Learned and applied one useful digital tool or technique to simplify a real-life task."}
 ];
 
-const KEY="jubaidas-yearly-daily-tracker";
-const $=id=>document.getElementById(id);
 const now=new Date();
-let year=now.getFullYear();
-let month=now.getMonth();
-let selectedDay=now.getDate();
-let data=load();
+let selected={year:now.getFullYear(),month:now.getMonth(),day:now.getDate()};
 
-function key(y,m,d){
+try{
+const previous=JSON.parse(localStorage.getItem(DATE_KEY));
+if(previous && Number.isInteger(previous.year) && Number.isInteger(previous.month) && Number.isInteger(previous.day)){
+selected=previous;
+}
+}catch(e){}
+
+let data={};
+try{
+const stored=JSON.parse(localStorage.getItem(KEY));
+if(stored && typeof stored==="object" && !Array.isArray(stored)) data=stored;
+}catch(e){}
+
+function dateKey(y,m,d){
 return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
 }
-
-function load(){
-try{
-return JSON.parse(localStorage.getItem(KEY))||{};
-}catch(e){return {};}
-}
+function daysInMonth(y,m){return new Date(y,m+1,0).getDate();}
+function currentKey(){return dateKey(selected.year,selected.month,selected.day);}
 
 function save(){
 try{
 localStorage.setItem(KEY,JSON.stringify(data));
+localStorage.setItem(DATE_KEY,JSON.stringify(selected));
+const check=JSON.parse(localStorage.getItem(KEY));
+if(!check || !check[currentKey()]){
+// The day may not have data yet; the write itself is still verified below.
+}
+$("saveStatus").textContent="Saved automatically ✓";
 }catch(e){
-alert("Could not save data. Please check browser storage.");
+$("saveStatus").textContent="Save failed. Browser storage is unavailable.";
 }
-}
-
-function daysInMonth(y,m){
-return new Date(y,m+1,0).getDate();
 }
 
 function dayData(k){
-if(!data[k])data[k]={checks:[false,false,false],remark:""};
-if(!Array.isArray(data[k].checks))data[k].checks=[false,false,false];
-data[k].checks=[0,1,2].map(i=>!!data[k].checks[i]);
-if(typeof data[k].remark!=="string")data[k].remark="";
+if(!data[k] || typeof data[k]!=="object") data[k]={checks:[false,false,false],remark:""};
+if(!Array.isArray(data[k].checks)) data[k].checks=[false,false,false];
+data[k].checks=[0,1,2].map(i=>Boolean(data[k].checks[i]));
+if(typeof data[k].remark!=="string") data[k].remark="";
 return data[k];
+}
+
+function saveSelectedDate(){
+localStorage.setItem(DATE_KEY,JSON.stringify(selected));
 }
 
 function setupMonths(){
@@ -173,130 +161,96 @@ select.innerHTML="";
 for(let m=0;m<12;m++){
 const option=document.createElement("option");
 option.value=m;
-option.textContent=new Date(year,m,1).toLocaleDateString("en-US",{month:"long"});
+option.textContent=new Date(selected.year,m,1).toLocaleDateString("en-US",{month:"long"});
 select.appendChild(option);
 }
-select.value=month;
-select.addEventListener("change",()=>{
-month=Number(select.value);
-selectedDay=Math.min(selectedDay,daysInMonth(year,month));
+select.value=selected.month;
+select.onchange=()=>{
+selected.month=Number(select.value);
+selected.day=Math.min(selected.day,daysInMonth(selected.year,selected.month));
 setupDates();
+saveSelectedDate();
 render();
-});
+};
 }
 
 function setupDates(){
 const select=$("date");
 select.innerHTML="";
-for(let d=1;d<=daysInMonth(year,month);d++){
+for(let d=1;d<=daysInMonth(selected.year,selected.month);d++){
 const option=document.createElement("option");
 option.value=d;
-option.textContent=`${String(d).padStart(2,"0")} · ${new Date(year,month,d).toLocaleDateString("en-US",{weekday:"short"})}`;
+option.textContent=`${String(d).padStart(2,"0")} · ${new Date(selected.year,selected.month,d).toLocaleDateString("en-US",{weekday:"short"})}`;
 select.appendChild(option);
 }
-select.value=selectedDay;
+select.value=selected.day;
 select.onchange=()=>{
-selectedDay=Number(select.value);
+selected.day=Number(select.value);
+saveSelectedDate();
 render();
 };
 }
 
 function renderTasks(){
-const k=key(year,month,selectedDay);
-const current=dayData(k);
-
-$("selectedDate").textContent=new Date(year,month,selectedDay)
-.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
-
+const k=currentKey();
+const day=dayData(k);
+$("selectedDate").textContent=new Date(selected.year,selected.month,selected.day).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
 const container=$("tasks");
 container.innerHTML="";
 
 tasks.forEach((task,i)=>{
 const label=document.createElement("label");
-label.className="task"+(current.checks[i]?" completed":"");
-
-const check=document.createElement("input");
-check.type="checkbox";
-check.checked=current.checks[i];
-check.setAttribute("aria-label","Complete "+task.title);
+label.className="task"+(day.checks[i]?" completed":"");
+const checkbox=document.createElement("input");
+checkbox.type="checkbox";
+checkbox.checked=day.checks[i];
+checkbox.setAttribute("aria-label","Complete "+task.title);
 
 const content=document.createElement("div");
 content.className="task-content";
-
 const title=document.createElement("strong");
 title.textContent=task.title;
-
 const description=document.createElement("small");
 description.textContent=task.description;
-
 content.append(title,description);
-label.append(check,content);
+label.append(checkbox,content);
 container.appendChild(label);
 
-check.addEventListener("change",()=>{
-dayData(k).checks[i]=check.checked;
+checkbox.addEventListener("change",()=>{
+dayData(k).checks[i]=checkbox.checked;
 save();
 render();
 });
 });
-
-$("dailyCount").textContent=current.checks.filter(Boolean).length+"/3";
-$("reflection").value=current.remark;
+$("dailyCount").textContent=day.checks.filter(Boolean).length+"/3";
+$("reflection").value=day.remark;
 }
 
 function renderProgress(){
-const totalDays=daysInMonth(year,month);
+const totalDays=daysInMonth(selected.year,selected.month);
 let completed=0,active=0,full=0;
-
 for(let d=1;d<=totalDays;d++){
-const day=dayData(key(year,month,d));
+const day=dayData(dateKey(selected.year,selected.month,d));
 const count=day.checks.filter(Boolean).length;
 completed+=count;
-if(count>0)active++;
-if(count===3)full++;
+if(count>0) active++;
+if(count===3) full++;
 }
-
 const total=totalDays*3;
 const pct=Math.round(completed/total*100);
-
 $("percent").textContent=pct+"%";
 $("done").textContent=completed+"/"+total;
 $("active").textContent=active+"/"+totalDays;
 $("fill").style.width=pct+"%";
-$("progressText").textContent=
-pct===100?"Excellent! Every task is complete this month.":
-active+" active day(s). Keep making steady progress.";
+$("progressText").textContent=active+" active day(s). Keep making steady progress.";
 
-$("summaryTitle").textContent=
-new Date(year,month,1).toLocaleDateString("en-US",{month:"long"})+" Remark";
-
-const today=new Date();
-const isPastMonth=
-year<today.getFullYear()||
-(year===today.getFullYear()&&month<today.getMonth());
-const isCurrentMonth=
-year===today.getFullYear()&&month===today.getMonth();
-
-if(isPastMonth||isCurrentMonth&&today.getDate()===totalDays){
-if(pct>=90){
-$("monthlyRemark").textContent="Excellent consistency! You maintained a strong learning routine and completed almost all your planned tasks.";
-}else if(pct>=75){
-$("monthlyRemark").textContent="Great progress! You regularly invested time in academic learning, problem-solving, and digital productivity.";
-}else if(pct>=50){
-$("monthlyRemark").textContent="Good effort! Review your progress and build a more consistent routine next month.";
-}else if(pct>0){
-$("monthlyRemark").textContent="You made a start. Set realistic daily goals and focus on small, meaningful tasks consistently.";
-}else{
-$("monthlyRemark").textContent="Start with one small task each day and gradually build a sustainable learning habit.";
-}
-}else{
-$("monthlyRemark").textContent=
-"Keep tracking your daily learning. Your monthly remark will become more meaningful as you complete more tasks.";
-}
-
-$("monthlyStats").textContent=
-"Completed: "+completed+"/"+total+" tasks · Active days: "+
-active+"/"+totalDays+" · Fully completed days: "+full+"/"+totalDays+".";
+$("summaryTitle").textContent=new Date(selected.year,selected.month,1).toLocaleDateString("en-US",{month:"long"})+" Remark";
+if(pct>=90) $("monthlyRemark").textContent="Excellent consistency! You completed almost all your planned tasks.";
+else if(pct>=75) $("monthlyRemark").textContent="Great progress! Keep investing time in learning and problem-solving.";
+else if(pct>=50) $("monthlyRemark").textContent="Good effort! Keep building a more consistent routine.";
+else if(pct>0) $("monthlyRemark").textContent="You made a start. Focus on small, meaningful tasks consistently.";
+else $("monthlyRemark").textContent="Start with one small task each day and gradually build a sustainable habit.";
+$("monthlyStats").textContent=`Completed: ${completed}/${total} tasks · Active days: ${active}/${totalDays} · Fully completed days: ${full}/${totalDays}.`;
 }
 
 function render(){
@@ -305,23 +259,21 @@ renderProgress();
 }
 
 $("reflection").addEventListener("input",e=>{
-dayData(key(year,month,selectedDay)).remark=e.target.value;
+dayData(currentKey()).remark=e.target.value;
 save();
 });
 
 $("today").addEventListener("click",()=>{
-const t=new Date();
-year=t.getFullYear();
-month=t.getMonth();
-selectedDay=t.getDate();
+selected={year:now.getFullYear(),month:now.getMonth(),day:now.getDate()};
 setupMonths();
 setupDates();
+saveSelectedDate();
 render();
 });
 
 $("reset").addEventListener("click",()=>{
-if(!confirm("Reset tasks and remark for this date?"))return;
-data[key(year,month,selectedDay)]={checks:[false,false,false],remark:""};
+if(!confirm("Reset tasks and remark for this date?")) return;
+data[currentKey()]={checks:[false,false,false],remark:""};
 save();
 render();
 });
